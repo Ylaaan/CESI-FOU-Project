@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with Web Development - My Blog</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <style>
+        /* Blog post specific styles */
+        .post-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .post-title {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .post-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-meta-detailed {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .post-meta-detailed span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .post-tags {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #3498db;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .tag:hover {
+            background: #2980b9;
+        }
+
+        /* Article content */
+        .article-content {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .article-content h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem 0;
+            padding-top: 1rem;
+        }
+
+        .article-content h3 {
+            color: #34495e;
+            font-size: 1.4rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        .article-content p {
+            margin-bottom: 1.2rem;
+            color: #444;
+        }
+
+        /* Code blocks */
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .code-inline {
+            background: #ecf0f1;
+            color: #e74c3c;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        /* Quotes */
+        .quote-block {
+            border-left: 4px solid #3498db;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        .quote-author {
+            text-align: right;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        /* Info boxes */
+        .info-box {
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid;
+        }
+
+        .info-box.tip {
+            background: #d5f4e6;
+            border-color: #27ae60;
+            color: #155724;
+        }
+
+        .info-box.warning {
+            background: #fff3cd;
+            border-color: #f39c12;
+            color: #856404;
+        }
+
+        .info-box.danger {
+            background: #f8d7da;
+            border-color: #e74c3c;
+            color: #721c24;
+        }
+
+        .info-box.info {
+            background: #d1ecf1;
+            border-color: #3498db;
+            color: #0c5460;
+        }
+
+        .info-box h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        /* Lists */
+        .article-content ul, .article-content ol {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+            color: #444;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        th {
+            background: #34495e;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Images */
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .image-caption {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            background: #ecf0f1;
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Social sharing */
+        .social-share {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .social-share h4 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .share-btn.twitter { background: #1da1f2; }
+        .share-btn.facebook { background: #4267b2; }
+        .share-btn.linkedin { background: #0077b5; }
+        .share-btn.reddit { background: #ff4500; }
+
+        /* Table of contents */
+        .table-of-contents {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .table-of-contents h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin: 0.5rem 0;
+        }
+
+        .toc-list a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc-list a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        .toc-list .toc-h3 {
+            margin-left: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Author bio */
+        .author-bio {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 3rem 0;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #ecf0f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .author-info h4 {
+            margin: 0 0 0.5rem 0;
+            color: #2c3e50;
+        }
+
+        .author-info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Related posts */
+        .related-posts {
+            margin: 3rem 0;
+        }
+
+        .related-posts h3 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .related-post {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .related-post:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .related-post h4 {
+            margin: 0 0 0.5rem 0;
+            color: #2c3e50;
+        }
+
+        .related-post .post-meta {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .post-title {
+                font-size: 2.2rem;
+            }
+
+            .post-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .post-meta-detailed {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .article-content {
+                font-size: 1rem;
+            }
+
+            .author-bio {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">MyBlog</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li><a href="../ideas.html">Ideas</a></li>
+                <li><a href="../about.html" class="active">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Post Header -->
+        <header class="post-header">
+            <h1 class="post-title">Getting Started with Web Development</h1>
+            <p class="post-subtitle">A comprehensive guide for beginners looking to break into the world of web development</p>
+            
+            <div class="post-meta-detailed">
+                <span>📅 Published July 10, 2025</span>
+                <span>⏱️ 8 min read</span>
+                <span>👁️ 1,247 views</span>
+                <span>💬 23 comments</span>
+            </div>
+            
+            <div class="post-tags">
+                <a href="#" class="tag">Web Development</a>
+                <a href="#" class="tag">Beginner</a>
+                <a href="#" class="tag">HTML</a>
+                <a href="#" class="tag">CSS</a>
+                <a href="#" class="tag">JavaScript</a>
+            </div>
+        </header>
+
+        <!-- Table of Contents -->
+        <div class="table-of-contents">
+            <h3>📋 Table of Contents</h3>
+            <ul class="toc-list">
+                <li><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#fundamentals">2. The Fundamentals</a>
+                    <ul class="toc-list">
+                        <li class="toc-h3"><a href="#html-basics">HTML Basics</a></li>
+                        <li class="toc-h3"><a href="#css-styling">CSS Styling</a></li>
+                        <li class="toc-h3"><a href="#javascript-interactivity">JavaScript Interactivity</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tools">3. Essential Tools</a></li>
+                <li><a href="#learning-path">4. Learning Path</a></li>
+                <li><a href="#conclusion">5. Conclusion</a></li>
+            </ul>
+        </div>
+
+        <!-- Article Content -->
+        <article class="article-content">
+            <h2 id="introduction">Introduction</h2>
+            <p>Web development can seem overwhelming at first, but with the right approach and mindset, anyone can learn to build amazing websites and web applications. In this comprehensive guide, I'll walk you through everything you need to know to get started on your web development journey.</p>
+
+            <div class="info-box tip">
+                <h4>💡 Pro Tip</h4>
+                <p>The key to learning web development is consistency. Even 30 minutes of practice daily will yield better results than cramming for hours once a week.</p>
+            </div>
+
+            <h2 id="fundamentals">The Fundamentals</h2>
+            <p>Before diving into frameworks and libraries, it's crucial to master the three pillars of web development:</p>
+
+            <h3 id="html-basics">HTML Basics</h3>
+            <p>HTML (HyperText Markup Language) provides the structure and content of web pages. Think of it as the skeleton of your website.</p>
+
+            <div class="code-block">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My First Web Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;p&gt;This is my first web page.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </div>
+
+            <h3 id="css-styling">CSS Styling</h3>
+            <p>CSS (Cascading Style Sheets) is responsible for the visual presentation. It's like choosing the paint, furniture, and decorations for your house.</p>
+
+            <div class="quote-block">
+                "CSS is not just about making things look pretty. It's about creating intuitive, accessible, and delightful user experiences."
+                <div class="quote-author">— Sarah Drasner, VP of Developer Experience at Netlify</div>
+            </div>
+
+            <h3 id="javascript-interactivity">JavaScript Interactivity</h3>
+            <p>JavaScript brings your web pages to life with interactivity and dynamic behavior. Here's a simple example:</p>
+
+            <div class="code-block">
+// Add interactivity to a button
+document.getElementById('myButton').addEventListener('click', function() {
+    alert('Hello from JavaScript!');
+});
+
+// Modern ES6+ syntax
+const greetUser = (name) => {
+    return `Welcome, ${name}! Ready to learn web development?`;
+};
+            </div>
+
+            <div class="info-box warning">
+                <h4>⚠️ Common Mistake</h4>
+                <p>Don't rush to learn frameworks like React or Vue.js before mastering vanilla JavaScript. Understanding the fundamentals will make you a much stronger developer.</p>
+            </div>
+
+            <h2 id="tools">Essential Tools</h2>
+            <p>Having the right tools can significantly improve your development workflow. Here's a comparison of popular code editors:</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Editor</th>
+                            <th>Price</th>
+                            <th>Best For</th>
+                            <th>Key Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>VS Code</td>
+                            <td>Free</td>
+                            <td>General purpose</td>
+                            <td>Extensions, IntelliSense, Git integration</td>
+                        </tr>
+                        <tr>
+                            <td>WebStorm</td>
+                            <td>$59/year</td>
+                            <td>JavaScript/TypeScript</td>
+                            <td>Advanced debugging, refactoring tools</td>
+                        </tr>
+                        <tr>
+                            <td>Sublime Text</td>
+                            <td>$99 license</td>
+                            <td>Speed & simplicity</td>
+                            <td>Fast performance, minimal interface</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="learning-path">Recommended Learning Path</h2>
+            <p>Here's a structured approach to learning web development:</p>
+
+            <ol>
+                <li><strong>Master the basics</strong> - HTML, CSS, and JavaScript fundamentals</li>
+                <li><strong>Learn version control</strong> - Git and GitHub for code management</li>
+                <li><strong>Understand responsive design</strong> - Making websites work on all devices</li>
+                <li><strong>Explore a framework</strong> - React, Vue, or Angular for building complex apps</li>
+                <li><strong>Backend basics</strong> - Node.js, Python, or your preferred server-side language</li>
+            </ol>
+
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Your Learning Progress</span>
+                    <span>65%</span>
+                </div>
+                <div class="progress-bar" style="width: 65%;"></div>
+            </div>
+
+            <div class="info-box info">
+                <h4>📚 Recommended Resources</h4>
+                <p>Check out <span class="code-inline">freeCodeCamp</span>, <span class="code-inline">MDN Web Docs</span>, and <span class="code-inline">JavaScript.info</span> for comprehensive learning materials.</p>
+            </div>
+
+            <div class="image-container">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200' fill='%23f8f9fa'%3E%3Crect width='400' height='200' fill='%23e9ecef'/%3E%3Ctext x='200' y='100' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-size='16' fill='%23666'%3EYour Learning Journey Visualization%3C/text%3E%3C/svg%3E" alt="Learning path visualization">
+                <div class="image-caption">Visual representation of the web development learning journey</div>
+            </div>
+
+            <div class="info-box danger">
+                <h4>🚨 Avoid Tutorial Hell</h4>
+                <p>While tutorials are great for learning, make sure to build your own projects. Apply what you learn by creating real websites and applications.</p>
+            </div>
+
+            <h2 id="conclusion">Conclusion</h2>
+            <p>Web development is an exciting field with endless opportunities for creativity and problem-solving. Remember that everyone learns at their own pace, and it's okay to feel overwhelmed sometimes. The key is to stay consistent, practice regularly, and don't be afraid to make mistakes.</p>
+
+            <p>Start with small projects, celebrate your wins, and gradually work your way up to more complex applications. The web development community is incredibly supportive, so don't hesitate to ask for help when you need it.</p>
+
+            <!-- Social Sharing -->
+            <div class="social-share">
+                <h4>Found this helpful? Share it with others!</h4>
+                <div class="share-buttons">
+                    <a href="#" class="share-btn twitter">Share on Twitter</a>
+                    <a href="#" class="share-btn facebook">Share on Facebook</a>
+                    <a href="#" class="share-btn linkedin">Share on LinkedIn</a>
+                    <a href="#" class="share-btn reddit">Share on Reddit</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Author Bio -->
+        <div class="author-bio">
+            <div class="author-avatar">👨‍💻</div>
+            <div class="author-info">
+                <h4>Alex Johnson</h4>
+                <p>Full-stack developer with 5+ years of experience. Passionate about teaching and helping others break into tech. When not coding, you'll find me hiking or experimenting with new recipes.</p>
+            </div>
+        </div>
+
+        <!-- Related Posts -->
+        <section class="related-posts">
+            <h3>You might also like</h3>
+            <div class="related-grid">
+                <a href="#" class="related-post">
+                    <h4>CSS Grid vs Flexbox: When to Use Each</h4>
+                    <div class="post-meta">June 28, 2025 • 6 min read</div>
+                </a>
+                <a href="#" class="related-post">
+                    <h4>Building Your First React Application</h4>
+                    <div class="post-meta">June 20, 2025 • 10 min read</div>
+                </a>
+                <a href="#" class="related-post">
+                    <h4>JavaScript ES6+ Features Every Developer Should Know</h4>
+                    <div class="post-meta">June 15, 2025 • 7 min read</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#contact">Contact</a>
+                <a href="#rss">RSS Feed</a>
+            </div>
+            <p>&copy; 2025 MyBlog. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
